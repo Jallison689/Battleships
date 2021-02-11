@@ -11,6 +11,11 @@ public class Main {
         Ships d1 = new Ships(coordMaker.getCoords(3), "Destroyer");
         Ships d2 = new Ships(coordMaker.getCoords(3), "Destroyer");
         Ships b1 = new Ships(coordMaker.getCoords(4), "Battleship");
+        gameRun(shipBoard, d1, d2, b1);
+    }
+
+    public static void gameRun(Board shipBoard, Ships d1, Ships d2, Ships b1){
+
 
         boolean gameOn = true;
 
