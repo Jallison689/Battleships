@@ -36,6 +36,6 @@ public class Board {
         for(int[] each  : coords){
             coordContents.add(map[each[0]][each[1]]);
         }
-        return coordContents;
+        return new ArrayList<>(coordContents);
     }
 }
