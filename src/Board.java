@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.ArrayList;
 
 public class Board {
     String[][] map = new String[10][10];
@@ -11,61 +11,31 @@ public class Board {
         }
     }
 
-    public void hittingShips(int[] coords){
+    public String hittingShips(int[] coords){
         if(map[coords[0]][coords[1]].equals("S")){
             map[coords[0]][coords[1]] = "O";
-            System.out.println("Hit");
+            return "Hit";
         }else{
             map[coords[0]][coords[1]] = "X";
-            System.out.println("Miss");
+            return "Miss";
         }
     }
 
-    public void show(){
-        int count = 1;
-
-        System.out.println("   A B C D E F G H I J");
-
-        for (String[] each:map){
-            if(count != 10){
-                System.out.print(count + " ");
-            }else{
-                System.out.print(count);
-            }
-            for (String stringEach:each) {
-                System.out.print("|");
-                /*if(stringEach.equals("S")){
-                    System.out.print(" ");
-                }else{*/
-                System.out.print(stringEach);
-                //}
-            }
-            count++;
-            System.out.print("|");
-            System.out.println();
-        }
-        System.out.println();
-    }
-
-    public void addShips(Ships ship){
-        int[][] CoordsHolder;
-        CoordsHolder = ship.getCoords();
-        for (int[] each : CoordsHolder) {
+    public void addShip(int[][] coords){
+        for (int[] each : coords) {
             map[each[0]][each[1]] = "S";
         }
-
     }
 
-    public void isSunk(Ships ship){
-        int[][] CoordsHolder = ship.getCoords();
-        int length = ship.getLength() + 1;
-        for (int[] each : CoordsHolder) {
-            if(!(map[each[0]][each[1]].equals("S"))){
-                length--;
-            }
+    public String[][] getBoard(){
+        return this.map.clone();
+    }
+
+    public ArrayList<String> getCoordContents(int[][] coords){
+        ArrayList<String> coordContents = new ArrayList<>();
+        for(int[] each  : coords){
+            coordContents.add(map[each[0]][each[1]]);
         }
-        if(length == 0){
-            ship.makeSunk();
-        }
+        return coordContents;
     }
 }
